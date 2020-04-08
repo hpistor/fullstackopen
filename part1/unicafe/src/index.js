@@ -5,6 +5,12 @@ const Button = ({ handleOnClick, children }) => (
   <button onClick={handleOnClick}>{children}</button>
 )
 
+const Statistic = ({ name, value }) => (
+  <p>
+    {name} {value}
+  </p>
+)
+
 const Statistics = ({ good, neutral, bad }) => {
 
   const all = good + neutral + bad
@@ -14,24 +20,12 @@ const Statistics = ({ good, neutral, bad }) => {
     <div>
       {all > 0 ?
         <>
-          <p>
-            Good: {good}
-          </p>
-          <p>
-            Neutral: {neutral}
-          </p>
-          <p>
-            Bad: {bad}
-          </p>
-          <p>
-            All: {all}
-          </p>
-          <p>
-            Average: {average}
-          </p>
-          <p>
-            Positive: {positive}
-          </p>
+          <Statistic name="good" value={good} />
+          <Statistic name="neutral" value={neutral} />
+          <Statistic name="bad" value={bad} />
+          <Statistic name="all" value={all} />
+          <Statistic name="average" value={average} />
+          <Statistic name="positive" value={positive} />
         </>
         :
         "No statistics gathered yet"
