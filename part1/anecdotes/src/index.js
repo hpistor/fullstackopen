@@ -1,6 +1,17 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
+const Anecdote = ({ anecdote, votes }) => (
+  <div>
+    <p>
+      {anecdote}
+    </p>
+    <p>
+      Has {votes} votes.
+      </p>
+  </div>
+)
+
 const App = (props) => {
   const [selected, setSelected] = useState(0)
   const [votes, setVotes] = useState(new Array(props.anecdotes.length).fill(0))
@@ -25,18 +36,24 @@ const App = (props) => {
     setSelected(newIndex)
   }
 
+  let maxVotes = Math.max(...votes)
+  let indexMaxVotes = votes.indexOf(maxVotes)
+
   return (
     <div>
-      <p>
-        {props.anecdotes[selected]}
-      </p>
-      <p>
-        Has {votes[selected]} votes.
-      </p>
-      <p>
-        <button onClick={() => vote()}>Vote</button>
-        <button onClick={() => changeAnecdotes()}>Next anecdote</button>
-      </p>
+      <div>
+        <h1>Anecdote of the Day</h1>
+        <Anecdote anecdote={props.anecdotes[selected]} votes={votes[selected]} />
+        <p>
+          <button onClick={() => vote()}>Vote</button>
+          <button onClick={() => changeAnecdotes()}>Next anecdote</button>
+        </p>
+      </div>
+      {maxVotes > 0 && <div>
+        <h1>Anecdote with most votes</h1>
+        <Anecdote anecdote={props.anecdotes[indexMaxVotes]} votes={votes[indexMaxVotes]} />
+      </div>
+      }
     </div>
   )
 }
