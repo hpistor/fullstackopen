@@ -6,6 +6,7 @@ const Button = ({ handleOnClick, children }) => (
 )
 
 const Statistics = ({ good, neutral, bad }) => {
+
   const all = good + neutral + bad
   const average = good - bad
   const positive = good / all
