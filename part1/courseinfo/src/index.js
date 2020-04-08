@@ -24,7 +24,7 @@ const Total = ({ parts }) => {
   const exercises = parts.reduce((agg, cur) => agg += cur.exercises, 0)
   return (
     <p>
-      Number of exercises {exercises}
+      <b>Number of exercises {exercises}</b>
     </p>
   )
 }
@@ -33,6 +33,7 @@ const Course = ({ course }) => (
   <div>
     <Header course={course.name} />
     <Content parts={course.parts} />
+    <Total parts={course.parts} />
   </div>
 
 )
